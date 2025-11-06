@@ -1,0 +1,303 @@
+/* =========================
+   WC Sellable Toggle Filter — Flexbox layout
+   ========================= */
+
+/* Wrapper layout: sidebar + main */
+.wc-sft-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 20px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Sidebar */
+.wc-sft-sidebar {
+  flex: 0 0 25%;
+  max-width: 25%;
+  box-sizing: border-box;
+}
+
+/* Main content */
+.wc-sft-main {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Sidebar filter box */
+.wc-sft-filter-box {
+  border: 1px solid #e6e6e6;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+.wc-sft-filter-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+.wc-sft-filter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wc-sft-filter-list li { margin: 0; }
+.wc-sft-filter-list a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+}
+.wc-sft-filter-list a.active {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+/* Sorting bar */
+.wc-sft-sort-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+.wc-sft-sort-bar select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* Products container (Flex layout) */
+.wc-sft-products-grid ul.products {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Product items: 3 columns on desktop */
+.wc-sft-products-grid ul.products li.product {
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+/* Product card inner styling */
+.wc-sft-product-inner {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.wc-sft-thumb-link img { max-width: 100%; height: auto; }
+.wc-sft-title { font-size: 1rem; margin: 10px 0; }
+.wc-sft-price { font-weight: 600; margin-bottom: 8px; }
+.wc-sft-add-to-cart { margin-bottom: 12px; }
+.wc-sft-add-to-cart .button {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #0073aa;
+  color: #fff;
+  text-decoration: none;
+}
+.wc-sft-paypal { margin-top: auto; }
+.wc-sft-paypal-logo {
+  display: block;
+  margin: 6px auto;
+  max-width: 70px;
+  height: auto;
+}
+.wc-sft-paypal-text {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
+  text-align: center;
+}
+
+/* Stock Badges */
+.wc-sft-stock-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.wc-sft-instock {
+  background: #28a745; /* green */
+}
+.wc-sft-onbackorder {
+  background: #ffc107; /* yellow */
+}
+.wc-sft-outofstock {
+  background: #dc3545; /* red */
+}
+
+/* Loading state */
+.wc-sft-products-grid.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Mobile adjustments */
+.wc-sft-toggle-btn {
+  display: none;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
+  background: #111;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .wc-sft-wrapper {
+    flex-direction: column;
+  }
+  .wc-sft-sidebar {
+    display: none;
+    width: 100%;
+    max-width: 100%;
+  }
+  .wc-sft-sidebar.open {
+    display: block;
+    margin-bottom: 12px;
+  }
+  .wc-sft-main {
+    width: 100%;
+  }
+  /* Products: 1 column */
+  .wc-sft-products-grid ul.products li.product {
+    flex: 1 1 100%;
+  }
+  .wc-sft-toggle-btn {
+    display: block;
+  }
+}
+
+/* =========================
+   Stock Notification Form
+   ========================= */
+.wc-sft-stock-notify {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px dashed #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  font-size: 0.9rem;
+}
+.wc-sft-stock-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.wc-sft-stock-form input[type="email"] {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.wc-sft-stock-form button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background: #0073aa;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.wc-sft-stock-form button:hover {
+  background: #005f8d;
+}
+.wc-sft-stock-response {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  display: none;
+}
+/* =========================
+   Notify Me Popup
+   ========================= */
+.wc-sft-modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.wc-sft-modal.open {
+  display: flex;
+}
+.wc-sft-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+.wc-sft-modal h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.wc-sft-modal p {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+.wc-sft-modal .wc-sft-stock-form {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+.wc-sft-modal input[type="email"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.wc-sft-modal button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background: #0073aa;
+  color: #fff;
+  cursor: pointer;
+}
+.wc-sft-modal button:hover {
+  background: #005f8d;
+}
+.wc-sft-modal .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.wc-sft-stock-response {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  display: none;
+}
