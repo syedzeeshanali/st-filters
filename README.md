@@ -1,69 +1,169 @@
-=== Sellable Filters ===
-Contributors: syedzeeshan
-Tags: woocommerce, filters, product-filter, ajax, elementor, chips, facets
-Requires at least: 5.8
-Tested up to: 6.6
-Requires PHP: 7.4
-Stable tag: 1.7.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Sellable Filters adds modern multi-select chip filters (categories, tags, brands), AJAX product grid, and an Elementor widget (“ST Filter”) for WooCommerce.
+# 🧩 ST Filters
 
-== Description ==
-**Sellable Filters** is a lightweight, repo-friendly product filtering plugin for WooCommerce. It ships with:
-- **Multi-select chips** for Categories, Tags, and Brands (optional).
-- **AJAX product grid** with sorting and price range support.
-- **Elementor widget: ST Filter** with Query and Style tabs (background, typography, colors, spacing).
-- **Stock notification** (“Notify me”) hook compatible with Elementor Popup.
-- Clean architecture: slim bootstrap, classes in `/includes`, templates in `/templates`.
+> **Multi-select chip filters and toggle product grid for WooCommerce**  
+> Modern AJAX filtering with Elementor integration, category/tag/brand chips, and responsive toggle sidebar.
 
-**Why this plugin?**
-Most filters feel heavy or dated. Sellable Filters focuses on the modern UX your shoppers expect: chip selectors, instant updates, and a clean codebase you can extend.
+![ST Filters – Banner Light](assets/st-filters-banner-light.png#gh-light-mode-only)
+![ST Filters – Banner Dark](assets/st-filters-banner-dark.png#gh-dark-mode-only)
 
-== Features ==
-* Multi-select chips for Categories, Tags, Brands (if taxonomy exists)
-* AJAX loading (no page reloads)
-* Sort: Price (asc/desc), In Stock, Pre-Order, Out of Stock
-* Elementor widget (**ST Filter**) that renders the same shortcode
-* Shortcode `[wc_sft]` with include scopes: `cat_in`, `tag_in`, `brand_in`
-* Optional price_min / price_max
-* Custom product loop template overrideable in theme via `woocommerce/content-product-sft.php`
-* Stock notify endpoint for back-in-stock popups
+---
 
-== Shortcode ==
-Basic:
-`[wc_sft]`
+## 🏷️ Plugin Info
 
-With scope and options:
-`[wc_sft cat_in="helmets,45" tag_in="summer,clearance" brand_in="arai,7" columns="3" per_page="12" sort="price_asc"]`
+| Tested up to | Compatible WooCommerce | Requires PHP | Version |
+|-------------|------------------------|--------------|--------|
+| **6.8.2** | **10.3+** | **7.4+** | **1.0.0** |
 
-== Installation ==
-1. Upload the plugin folder to `/wp-content/plugins/` or install via the Plugins screen.
-2. Activate **Sellable Filters** through the Plugins screen.
-3. Add the shortcode `[wc_sft]` to a page OR drag the **ST Filter** widget in Elementor.
-4. (Optional) Create an Elementor popup and map the hidden fields for the “Notify me” button.
+---
 
-== Frequently Asked Questions ==
-= Does it work with my theme? =
-It uses WooCommerce templates and standard hooks, so it should work with most themes. The grid uses simple Flexbox CSS.
+## 🚀 Overview
 
-= Can I style the product cards? =
-Yes. Use the Elementor Style tab or add CSS to your theme. The card markup lives in `templates/content-product-sft.php` and can be overridden in your theme.
+**ST Filters** brings a clean, fast, chip‑based filtering experience to WooCommerce, designed with modern UI principles and performance in mind.
 
-= How do I change the base “sellable” set? =
-By default, products in the `bf-sale-2025` category are considered sellable. Change the slug via shortcode (`sellable_cat_slug`) or in a future settings screen.
+✨ **Key features**
+- ✅ **Multi‑select chips** for Categories, Tags, and Brands  
+- ⚡ **AJAX product grid** (no page reloads)  
+- 🎯 **Elementor widget: _ST Filter_** with full query + styling controls  
+- 🔔 **“Notify Me” out‑of‑stock popup support** (Elementor Pro ready)  
+- 📱 **Responsive toggle mobile filters**  
+- 🧼 **Lightweight architecture** (no bloat, extensible OO codebase)  
 
-== Screenshots ==
-1. Multi-select chip filters (Categories, Tags, Brands)
-2. AJAX product grid with stock badges
-3. Elementor “ST Filter” widget (Query & Style tabs)
-4. “Notify me” popup sample
+---
 
-== Changelog ==
-= 1.7.0 =
-* Initial public release: clean bootstrap, includes/, Elementor widget, chip filters, AJAX.
+## 🧩 Shortcode Usage
 
-== Upgrade Notice ==
-= 1.7.0 =
-This is the first repository release.
+### Basic
+```php
+[st_filters]
+```
+
+### With filtering scope + settings
+```php
+[st_filters 
+    cat_in="helmets,45" 
+    tag_in="summer,clearance" 
+    brand_in="arai,7"
+    columns="3"
+    per_page="12"
+    sort="price_asc"
+]
+```
+
+| Attribute | Description |
+|----------|-------------|
+| `cat_in` | Include categories (slug or ID comma‑list) |
+| `tag_in` | Include tags (slug or ID comma‑list) |
+| `brand_in` | Include brands (slug or ID comma‑list) |
+| `columns` | Grid columns (default `3`) |
+| `per_page` | Products per page (default `9`) |
+| `sort` | `default`, `price_asc`, `price_desc`, `in_stock`, `preorder`, `out_of_stock` |
+
+---
+
+## 🧱 Elementor Widget: **ST Filter**
+
+Drag → drop → filter.  
+
+This widget includes:
+
+🛠 **Query Controls**  
+- Include/exclude category, tag, brand terms  
+- Pagination control  
+- Sort control  
+
+🎨 **Style Controls**  
+- Card background  
+- Typography  
+- Chip design and spacing  
+- Grid layout controls  
+
+![ST Filters Header](assets/st-filters-badge-header.png)
+
+---
+
+## 📁 File Structure
+
+```
+st-filters/
+│
+├── st-filters.php                # Bootstrap / loader
+├── includes/
+│   ├── class-st-filters.php
+│   ├── class-st-shortcode.php
+│   ├── class-st-ajax.php
+│   ├── class-st-elementor-widget.php
+│   └── helpers.php
+│
+├── templates/
+│   └── content-product-st.php
+│
+└── assets/
+    ├── css/st-filters.css
+    ├── js/st-filters.js
+    ├── st-filters-icon.png
+    ├── st-filters-banner-light.png
+    ├── st-filters-banner-dark.png
+    └── st-filters-badge-header.png
+```
+
+---
+
+## 🔔 Stock Notification Integration
+
+If a product is **out of stock**, ST Filters can trigger your Elementor popup:
+
+```js
+elementorProFrontend.modules.popup.showPopup({ id: YOUR_POPUP_ID });
+```
+
+Hidden form fields populate automatically for product title & ID.
+
+---
+
+## 🧠 Architecture Notes
+
+- Follows **OOP modular WordPress plugin structure**
+- Uses **WordPress AJAX API + WooCommerce product loop**
+- Template override support via:
+  ```
+  yourtheme/woocommerce/content-product-st.php
+  ```
+
+---
+
+## 🖼 Screenshots
+(Screenshots pending — auto‑generate when live in repo)
+
+1. Chip filter UI  
+2. AJAX product grid  
+3. Elementor widget — Query tab  
+4. Elementor widget — Style tab  
+5. Stock “Notify Me” popup  
+
+---
+
+## 🧾 Changelog
+
+### 1.0.0
+- Initial stable release  
+- Elementor widget included  
+- AJAX filtering architecture  
+- Brand & Tag chips support  
+- Stock notification system  
+
+---
+
+## 💡 License
+
+Licensed under **GPL‑2.0 or later**  
+https://www.gnu.org/licenses/gpl-2.0.html
+
+---
+
+## ✨ Credits
+
+Built with ❤️ by **Syed Zeeshan Ali**  
+_“Modern, fast WooCommerce enhancements for 2025+ stores.”_
+
+---
